@@ -1,0 +1,52 @@
+--- craftcc35.orig/hcc/hcc.cc	1997-02-21 16:50:16.000000000 +0500
++++ craftcc35/hcc/hcc.cc	2012-02-28 13:14:54.527973592 +0600
+@@ -1,9 +1,9 @@
+-#include "bool.h"
+ #include "stdio.h"
+-#include "std.h"
+ #include "string.h"
+ #include "ctype.h"
+ 
++#include <cstdlib>
++
+ #define max_refinements 10000
+ #define max_src_lines   10000
+ 
+--- craftcc35.orig/cry.h	1997-02-24 16:58:31.000000000 +0500
++++ craftcc35/cry.h	2012-02-28 13:14:54.527973592 +0600
+@@ -1,4 +1,5 @@
+ #include "stdio.h"
++#include <cstdlib>
+ 
+ /*-------------------------------------------------------------------------*/
+ /* cry.h                                                                   */
+--- craftcc35.orig/install	1997-06-12 18:30:18.000000000 +0600
++++ craftcc35/install	2012-02-28 13:14:54.531306924 +0600
+@@ -13,14 +13,14 @@
+ #
+ #--------------------------------------------------------------------
+ 
+-CFLAGS="-O2 -fexpensive-optimizations -finline-functions"
++CFLAGS="-w -O2 -fexpensive-optimizations -finline-functions"
+ HCC=hcc/hcc
+ CMP="$HCC -compiler $GCC $CFLAGS -c"
+ 
+ LFLAGS="-lX11 -lm -L$XLIB"
+ 
+ 
+-echo hcc           ; gcc  -o hcc/hcc hcc/hcc.cc
++echo hcc           ; g++ -w -o hcc/hcc hcc/hcc.cc
+ 
+ echo color_trans   ; $CMP color_trans
+ echo xtimer        ; $CMP xtimer        
+--- craftcc35.orig/ppm_handler.h	1997-02-21 16:52:17.000000000 +0500
++++ craftcc35/ppm_handler.h	2012-02-28 13:14:54.531306924 +0600
+@@ -8,6 +8,7 @@
+ /*======================================================================*/
+ 
+ #include "bool.h"
++#include <string.h>
+ 
+ bool ppm_size (char name [], int &dx, int &dy, int &color);
+ 
+
